@@ -122,3 +122,51 @@ variable "security_group_ids" {
   type        = list(string)
   default     = []
 }
+
+variable "private_zone_id" {
+  description = "The ID of the hosted zone to contain private IP record."
+  type        = string
+  default     = null
+}
+
+variable "public_zone_id" {
+  description = "The ID of the hosted zone to contain public IP record, if any."
+  type        = string
+  default     = null
+}
+
+variable "private_zone_record_name" {
+  description = "The name of the private zone record. Fallback to instance name."
+  type        = string
+  default     = null
+}
+
+variable "public_zone_record_name" {
+  description = "The name of the public zone record. Fallback to instance name."
+  type        = string
+  default     = null
+}
+
+variable "private_zone_record_cnames" {
+  description = "The CNAMEs of the private zone record."
+  type        = list(string)
+  default     = []
+}
+
+variable "public_zone_record_cnames" {
+  description = "The CNAMEs of the public zone record."
+  type        = list(string)
+  default     = []
+}
+
+variable "private_zone_record_ttl" {
+  description = "The TTL of the private records."
+  type        = number
+  default     = 600
+}
+
+variable "public_zone_record_ttl" {
+  description = "The TTL of the public records."
+  type        = number
+  default     = 600
+}
