@@ -47,6 +47,10 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_instance.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
+| [aws_route53_record.private_cnames](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_record.private_ip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_record.public_cnames](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_record.public_ip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_ec2_instance_type.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ec2_instance_type) | data source |
 
 ## Inputs
@@ -65,6 +69,14 @@ No modules.
 | <a name="input_key_name"></a> [key\_name](#input\_key\_name) | Key name of the Key Pair to use for the instance. | `string` | `null` | no |
 | <a name="input_monitoring"></a> [monitoring](#input\_monitoring) | If true, the launched EC2 instance will have detailed monitoring enabled. | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | The 'Name' tag of instance. | `string` | n/a | yes |
+| <a name="input_private_zone_id"></a> [private\_zone\_id](#input\_private\_zone\_id) | The ID of the hosted zone to contain private IP record. | `string` | `null` | no |
+| <a name="input_private_zone_record_cnames"></a> [private\_zone\_record\_cnames](#input\_private\_zone\_record\_cnames) | The CNAMEs of the private zone record. | `list(string)` | `[]` | no |
+| <a name="input_private_zone_record_name"></a> [private\_zone\_record\_name](#input\_private\_zone\_record\_name) | The name of the private zone record. Fallback to instance name. | `string` | `null` | no |
+| <a name="input_private_zone_record_ttl"></a> [private\_zone\_record\_ttl](#input\_private\_zone\_record\_ttl) | The TTL of the private records. | `number` | `600` | no |
+| <a name="input_public_zone_id"></a> [public\_zone\_id](#input\_public\_zone\_id) | The ID of the hosted zone to contain public IP record, if any. | `string` | `null` | no |
+| <a name="input_public_zone_record_cnames"></a> [public\_zone\_record\_cnames](#input\_public\_zone\_record\_cnames) | The CNAMEs of the public zone record. | `list(string)` | `[]` | no |
+| <a name="input_public_zone_record_name"></a> [public\_zone\_record\_name](#input\_public\_zone\_record\_name) | The name of the public zone record. Fallback to instance name. | `string` | `null` | no |
+| <a name="input_public_zone_record_ttl"></a> [public\_zone\_record\_ttl](#input\_public\_zone\_record\_ttl) | The TTL of the public records. | `number` | `600` | no |
 | <a name="input_root_iops"></a> [root\_iops](#input\_root\_iops) | Amount of provisioned IOPS. Only valid for root\_volume\_type of io1, io2 or gp3. Defaults to AMI setting. | `number` | `null` | no |
 | <a name="input_root_volume_encryption"></a> [root\_volume\_encryption](#input\_root\_volume\_encryption) | Whether to enable root volume encryption. Defaults to AMI setting. | `bool` | `null` | no |
 | <a name="input_root_volume_size"></a> [root\_volume\_size](#input\_root\_volume\_size) | Size of the root volume in gibibytes (GiB). Defaults to AMI setting. | `number` | `null` | no |
