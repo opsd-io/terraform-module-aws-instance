@@ -57,3 +57,41 @@ resource "aws_instance" "main" {
   })
 
 }
+
+## Route53 records.
+
+resource "aws_route53_record" "private_ip" {
+  count   = var.private_zone_id != null ? 1 : 0
+  zone_id = var.private_zone_id
+  name    = coalesce(var.private_zone_record_name, var.name)
+  type    = "A"
+  ttl     = var.private_zone_record_ttl
+  records = [aws_instance.main.private_ip]
+}
+
+resource "aws_route53_record" "public_ip" {
+  count   = var.public_zone_id != null ? 1 : 0
+  zone_id = var.public_zone_id
+  name    = coalesce(var.public_zone_record_name, var.name)
+  type    = "A"
+  ttl     = var.public_zone_record_ttl
+  records = [aws_instance.main.public_ip]
+}
+
+resource "aws_route53_record" "private_cnames" {
+  for_each = toset(var.private_zone_id != null ? var.private_zone_record_cnames : [])
+  zone_id  = var.private_zone_id
+  name     = each.value
+  type     = "CNAME"
+  ttl      = var.private_zone_record_ttl
+  records  = [aws_route53_record.private_ip[0].fqdn]
+}
+
+resource "aws_route53_record" "public_cnames" {
+  for_each = toset(var.public_zone_id != null ? var.public_zone_record_cnames : [])
+  zone_id  = var.public_zone_id
+  name     = each.value
+  type     = "CNAME"
+  ttl      = var.public_zone_record_ttl
+  records  = [aws_route53_record.public_ip[0].fqdn]
+}
