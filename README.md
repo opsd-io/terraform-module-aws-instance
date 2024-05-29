@@ -91,11 +91,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_arn"></a> [arn](#output\_arn) | n/a |
-| <a name="output_id"></a> [id](#output\_id) | n/a |
-| <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | n/a |
-| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
-| <a name="output_root_volume_id"></a> [root\_volume\_id](#output\_root\_volume\_id) | n/a |
+| <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the instance. |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the instance. |
+| <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | The private IP of the instance. |
+| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | The public IP of the instance. |
+| <a name="output_root_volume_id"></a> [root\_volume\_id](#output\_root\_volume\_id) | The ID of the root volume. |
 <!-- END_TF_DOCS -->
 
 ## Examples of usage
