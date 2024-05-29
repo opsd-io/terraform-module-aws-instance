@@ -15,7 +15,7 @@ data "aws_ec2_instance_type" "main" {
 resource "aws_instance" "main" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  ebs_optimized = var.ebs_optimized
+  ebs_optimized = var.ebs_optimized == null ? null : (var.ebs_optimized && data.aws_ec2_instance_type.main.ebs_optimized_support == "supported")
 
   user_data                   = var.user_data
   user_data_base64            = var.user_data_base64
@@ -39,7 +39,7 @@ resource "aws_instance" "main" {
 
   root_block_device {
     delete_on_termination = true
-    encrypted             = var.root_volume_encryption
+    encrypted             = var.root_volume_encryption == null ? null : (var.root_volume_encryption && data.aws_ec2_instance_type.main.ebs_encryption_support == "supported")
     volume_type           = var.root_volume_type
     volume_size           = var.root_volume_size
     iops                  = var.root_iops
